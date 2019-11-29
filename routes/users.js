@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var bcrypt = require('bcryptjs');
 
 var User = require("../models/UserSchema");
 // Halaman Login
@@ -13,6 +14,51 @@ router.get('/register', function (req, res, next) {
     title: "Halaman Register"
   });
 });
+
+//Action Login
+router.post('/login', function (req, res) {
+  
+  const {email,password} = req.body;
+ 
+  let errors = [];
+
+  if (!email || !password){
+    errors.push({msg:"Silahkan Lengkapi Data Anda"});
+  }
+  if (errors.length > 0) {
+    res.render("login", {
+      errors,
+      email,
+      password,
+
+    });
+  }
+  else {
+    User.findOne({email:email}).then(user=>{
+      if (user){
+        if (bcrypt.compareSync(password,user.password)){
+          res.redirect("/dashboard");
+        }else{
+          errors.push({msg:"Password Anda Salah"});
+          res.render("login", {
+            errors,
+            email,
+            password,
+          });
+        }
+      }
+      else{
+        errors.push({msg:"Email Anda Belum Terdaftar"});
+        res.render("login", {
+          errors,
+          email,
+          password,
+        });
+      }
+    })
+  }
+
+  });
 
 //Action Register
 router.post("/register",function(req,res){
