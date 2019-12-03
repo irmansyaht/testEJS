@@ -1,14 +1,30 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-
-<body>
-    <h1><%= title %></h1>
-    <p></p>
-</body>
-
-</html>
+<% include ./header %>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg"
+                class="d-block w-100" alt="Bendera Indonesia">
+        </div>
+        <div class="carousel-item">
+            <img src="data:image/png;base64,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"
+                class="d-block w-100" alt="Bendera Malaysia">
+        </div>
+        <div class="carousel-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Flag_of_Brunei.svg/2000px-Flag_of_Brunei.svg.png"
+                class="d-block w-100" alt="Bendera Brunei">
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>

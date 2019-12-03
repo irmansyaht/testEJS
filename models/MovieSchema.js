@@ -7,11 +7,11 @@ const MovieSchema = new mongoose.Schema({
         trim: true
     },
     released_on: {
-        type: Date,
+        type: String,
         required: true,
         trim: true
     },
 
 });
 
-module.exports = mongoose.model('MovieSchema');
+module.exports = mongoose.model('Movie',MovieSchema);
